@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        http-equiv="Content-Type"
+        content="text/html; charset=UTF-8"
+    >
+
+    <title>CaptionCraft - AI Image Caption Generator</title>
+
+
+    <!-- GOOGLE FONT -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <!-- JAVASCRIPT -->
+
+    <script
+        src="script.js"
+        defer
+    ></script>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         BACKGROUND
+         ========================================= -->
+
+    <div class="background">
+
+        <div class="blob blob-one"></div>
+
+        <div class="blob blob-two"></div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         MAIN
+         ========================================= -->
+
+    <main class="page">
+
+
+        <!-- =====================================
+             HEADER
+             ===================================== -->
+
+        <header class="header">
+
+            <div class="logo">
+                Caption<span>Craft</span>
+            </div>
+
+            <p class="tagline">
+                Craft the perfect caption for every image.
+            </p>
+
+        </header>
+
+
+
+        <!-- =====================================
+             WORKSPACE
+             ===================================== -->
+
+        <div class="workspace">
+
+
+            <!-- =====================================
+                 LEFT CARD
+                 ===================================== -->
+
+            <section class="glass-card control-card">
+
+
+                <!-- HEADING -->
+
+                <div class="section-heading">
+
+                    <div class="heading-icon">
+                        📸
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Create Your Post
+                        </h2>
+
+                        <p>
+                            Upload an image and customize your content
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     UPLOAD AREA
+                     ================================= -->
+
+                <div
+                    id="dropArea"
+                    class="drop-area"
+                >
+
+                    <div class="upload-symbol">
+                        ↑
+                    </div>
+
+                    <h3>
+                        Drag &amp; Drop your image
+                    </h3>
+
+                    <p>
+                        or
+                    </p>
+
+                    <label
+                        for="fileInput"
+                        class="browse-button"
+                    >
+                        Browse Files
+                    </label>
+
+                    <input
+                        type="file"
+                        id="fileInput"
+                        accept="image/png,image/jpeg,image/jpg,image/webp"
+                        hidden
+                    >
+
+                    <span class="file-info">
+                        PNG • JPG • JPEG • WEBP
+                    </span>
+
+                </div>
+
+
+
+                <!-- =================================
+                     IMAGE PREVIEW
+                     ================================= -->
+
+                <div
+                    id="previewContainer"
+                    class="preview-container"
+                    style="display:none;"
+                >
+
+                    <div class="preview-top">
+
+                        <span>
+                            Selected Image
+                        </span>
+
+                        <button
+                            id="removeImageBtn"
+                            class="remove-button"
+                            type="button"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+
+                    <div class="image-wrapper">
+
+                        <img
+                            id="imagePreview"
+                            alt="Selected image"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     PLATFORM
+                     ================================= -->
+
+                <div class="option-section">
+
+                    <label class="option-label">
+                        Choose Platform
+                    </label>
+
+
+                    <div class="platform-grid">
+
+
+                        <button
+                            class="platform-option active"
+                            data-platform="Instagram"
+                            type="button"
+                        >
+
+                            <span>
+                                📷
+                            </span>
+
+                            Instagram
+
+                        </button>
+
+
+                        <button
+                            class="platform-option"
+                            data-platform="Facebook"
+                            type="button"
+                        >
+
+                            <span>
+                                📘
+                            </span>
+
+                            Facebook
+
+                        </button>
+
+
+                        <button
+                            class="platform-option"
+                            data-platform="X"
+                            type="button"
+                        >
+
+                            <span>
+                                𝕏
+                            </span>
+
+                            X
+
+                        </button>
+
+
+                        <button
+                            class="platform-option"
+                            data-platform="LinkedIn"
+                            type="button"
+                        >
+
+                            <span>
+                                💼
+                            </span>
+
+                            LinkedIn
+
+                        </button>
+
+                    </div>
+
+
+                    <input
+                        type="hidden"
+                        id="platform"
+                        value="Instagram"
+                    >
+
+                </div>
+
+
+
+                <!-- =================================
+                     CAPTION STYLE
+                     ================================= -->
+
+                <div class="option-section">
+
+                    <label
+                        class="option-label"
+                        for="captionStyle"
+                    >
+                        Caption Style
+                    </label>
+
+
+                    <select
+                        id="captionStyle"
+                        class="select-input"
+                    >
+
+                        <option value="Creative">
+                            Creative
+                        </option>
+
+                        <option value="Professional">
+                            Professional
+                        </option>
+
+                        <option value="Funny">
+                            Funny
+                        </option>
+
+                        <option value="Inspirational">
+                            Inspirational
+                        </option>
+
+                        <option value="Minimal">
+                            Minimal
+                        </option>
+
+                        <option value="Trendy">
+                            Trendy
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="option-section">
+                    <label class="option-label">
+                        Caption Language
+                    </label>
+
+                    <select id="captionLanguage" class="select-input">
+                        <option value="English">English</option>
+                        <option value="Tamil">Tamil</option>
+                        <option value="Arabic">Arabic</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="German">German</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Korean">Korean</option>
+                        <option value="French">French</option>
+                    </select>
+                </div>
+
+                <!-- =================================
+                     CAPTION LENGTH
+                     ================================= -->
+
+                <div class="option-section">
+
+                    <label
+                        class="option-label"
+                        for="captionLength"
+                    >
+                        Caption Length
+                    </label>
+
+
+                    <select
+                        id="captionLength"
+                        class="select-input"
+                    >
+
+                        <option value="Short">
+                            Short
+                        </option>
+
+                        <option
+                            value="Medium"
+                            selected
+                        >
+                            Medium
+                        </option>
+
+                        <option value="Long">
+                            Long
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- =================================
+                     GENERATE BUTTON
+                     ================================= -->
+
+                <button
+                    id="generateBtn"
+                    class="generate-button"
+                    type="button"
+                    disabled
+                >
+
+                    <span id="generateText">
+                        Generate Caption ✨
+                    </span>
+
+                    <span
+                        id="loader"
+                        class="loader"
+                        style="display:none;"
+                    ></span>
+
+                </button>
+
+
+            </section>
+
+
+
+            <!-- =====================================
+                 RIGHT CARD
+                 ===================================== -->
+
+            <section class="glass-card result-card">
+
+
+                <!-- RESULT HEADER -->
+
+                <div class="result-header">
+
+                    <div class="section-heading">
+
+                        <div class="heading-icon">
+                            ✨
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Social Preview
+                            </h2>
+
+                            <p>
+                                See how your post will look
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        id="copyBtn"
+                        class="copy-button"
+                        type="button"
+                    >
+                        📋 Copy
+                    </button>
+
+                </div>
+
+
+
+                <!-- =================================
+                     SOCIAL PREVIEW
+                     ================================= -->
+
+                <div
+                    id="socialPreview"
+                    class="social-preview instagram-preview"
+                >
+
+
+                    <!-- USER -->
+
+                    <div class="social-user">
+
+                        <div class="avatar">
+                            C
+                        </div>
+
+
+                        <div class="user-details">
+
+                            <strong>
+                                captioncraft
+                            </strong>
+
+                            <span id="postTime">
+                                Just now
+                            </span>
+
+                        </div>
+
+
+                        <span class="more">
+                            •••
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- IMAGE -->
+
+                    <div class="social-image-container">
+
+                        <img
+                            id="socialImage"
+                            alt="Social media preview"
+                            style="display:none;"
+                        >
+
+                        <div
+                            id="socialImagePlaceholder"
+                            class="social-image-placeholder"
+                        >
+                            📸
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- INSTAGRAM -->
+
+                    <div
+                        id="instagramActions"
+                        class="social-actions"
+                    >
+
+                        <span>♡</span>
+
+                        <span>💬</span>
+
+                        <span>↗</span>
+
+                        <span class="bookmark">
+                            ♡
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- FACEBOOK -->
+
+                    <div
+                        id="facebookActions"
+                        class="facebook-actions"
+                        style="display:none;"
+                    >
+
+                        <span>
+                            👍 Like
+                        </span>
+
+                        <span>
+                            💬 Comment
+                        </span>
+
+                        <span>
+                            ↗ Share
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- X -->
+
+                    <div
+                        id="xActions"
+                        class="x-actions"
+                        style="display:none;"
+                    >
+
+                        <span>💬</span>
+
+                        <span>🔁</span>
+
+                        <span>♡</span>
+
+                        <span>↗</span>
+
+                    </div>
+
+
+
+                    <!-- LINKEDIN -->
+
+                    <div
+                        id="linkedinActions"
+                        class="linkedin-actions"
+                        style="display:none;"
+                    >
+
+                        <span>
+                            👍 Like
+                        </span>
+
+                        <span>
+                            💬 Comment
+                        </span>
+
+                        <span>
+                            🔁 Repost
+                        </span>
+
+                        <span>
+                            ↗ Send
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- CAPTION -->
+
+                    <div class="social-caption">
+
+                        <strong>
+                            captioncraft
+                        </strong>
+
+                        <span id="socialCaption"
+                        dir="auto">
+                            Your generated caption will appear here...
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- HASHTAGS -->
+
+                    <div
+                        id="socialHashtags"
+                        class="social-hashtags"
+                    ></div>
+
+
+
+                    <!-- COMMENTS -->
+
+                    <div class="comments-section">
+
+                        <div class="comments-title">
+                            Comments
+                        </div>
+
+
+                        <div class="comment">
+
+                            <div class="comment-avatar">
+                                A
+                            </div>
+
+                            <div class="comment-body">
+
+                                <strong>
+                                    alex
+                                </strong>
+
+                                <span>
+                                    Love this! ✨
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="comment">
+
+                            <div class="comment-avatar">
+                                S
+                            </div>
+
+                            <div class="comment-body">
+
+                                <strong>
+                                    sarah
+                                </strong>
+
+                                <span>
+                                    Such a beautiful moment ❤️
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="view-comments">
+                            View all comments
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================
+                     CAPTION EDITOR
+                     ================================= -->
+
+                <div class="caption-editor">
+
+                    <div class="editor-header">
+
+                        <span>
+                            Generated Caption
+                        </span>
+
+                    </div>
+
+
+                    <textarea
+                        id="captionBox"
+                        placeholder="Your generated caption will appear here..."
+                        readonly
+                        dir="auto" 
+                    ></textarea>
+
+                </div>
+
+
+
+                <!-- =================================
+                     TOOLS
+                     ================================= -->
+
+                <div class="action-row">
+
+                    <button
+                        id="hashtagBtn"
+                        class="secondary-button"
+                        type="button"
+                    >
+                        # Hashtags
+                    </button>
+
+
+                    <button
+                        id="emojiBtn"
+                        class="secondary-button"
+                        type="button"
+                    >
+                        😊 Emojis
+                    </button>
+
+
+                    <button
+                        id="translateBtn"
+                        class="secondary-button"
+                        type="button"
+                    >
+                        🌐 Translate
+                    </button>
+
+                </div>
+
+
+
+                <!-- =================================
+                     TRANSLATION
+                     ================================= -->
+
+                <div
+                    id="translationPanel"
+                    class="translation-panel"
+                    style="display:none;"
+                >
+
+                    <div class="translation-header">
+                        🌐 Translate Caption
+                    </div>
+
+
+                    <div class="translation-controls">
+
+                        <select
+                            id="languageSelect"
+                            class="select-input"
+                        >
+
+                            <option value="English">
+                                English
+                            </option>
+
+                            <option value="Arabic">
+                             العربية (Arabic)
+                            </option>
+
+                            <option value="Tamil">
+                                Tamil
+                            </option>
+
+                            <option value="Spanish">
+                                Spanish
+                            </option>
+
+                            <option value="German">
+                                German
+                            </option>
+
+                            <option value="Japanese">
+                                Japanese
+                            </option>
+
+                            <option value="Korean">
+                                Korean
+                            </option>
+
+                            <option value="French">
+                                French
+                            </option>
+
+                        </select>
+
+
+                        <button
+                            id="doTranslateBtn"
+                            class="translate-button"
+                            type="button"
+                        >
+                            Translate
+                        </button>
+
+                    </div>
+
+
+                    <textarea
+                        id="translatedBox"
+                        placeholder="Translated caption..."
+                        readonly
+                        dir="auto"
+                    ></textarea>
+
+                </div>
+
+
+
+                <!-- STATUS -->
+
+                <div
+                    id="statusMessage"
+                    class="status-message"
+                ></div>
+
+
+            </section>
+
+        </div>
+
+
+
+        <!-- =====================================
+             FOOTER
+             ===================================== -->
+
+        <footer>
+
+            <span>
+                CaptionCraft
+            </span>
+
+            <span class="dot">
+                •
+            </span>
+
+            <span>
+                Create. Caption. Connect.
+            </span>
+
+        </footer>
+
+
+    </main>
+
+
+</body>
+
+</html>
